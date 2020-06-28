@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org">
+<head>
+	<link rel="stylesheet" href="style.css" type="text/css">
+    <title>TaskManager</title>
+</head>
+
+<body style="background-color: powderblue">
+	<h1 th:text = "${project.name}"></h1>
+	<h4 th:text = "${project.description}"></h4>
+	
+	<div th:if="${members.size() >0}">
+		<h3>Shared with:</h3>
+			<ul>
+				<li th:each = "member: ${members}">
+					<div th:text = "${member.firstName} +  ' '  + ${member.lastName}"></div>
+				</li>
+			</ul>
+	</div>
+	<h3>Tasks</h3>
+		<ul>
+			<li th:each = "task: ${project.tasks}">
+				<div th:text = "${task.name} + '  ' +  ${task.description}"></div>
+								<form th:action="'/projects/task/tag/show/' + ${projectId} + '/' + ${task.id}" method="GET">
+  									<button type="submit">Show tags and comments</button>  
+  								</form>
+  								<form th:action="'/projects/task/comments/' + ${projectId} + '/' + ${task.id}" method="GET">
+  									<button type="submit">Add comments</button>  
+  								</form>
+				<div th:if="${task.completed == false and task.delegated.firstName == loggedUser.firstName}">
+							<form th:action="'/projects/task/complete/' + ${project.id} + '/' + ${task.id}" method="GET">
+		  					<button type="submit">Complete Task</button> 
+		  					</form> 
+  						</div>
+			</li>
+		</ul>
+	<h3>Tags</h3>
+				<ul>
+					<li th:each = "tag: ${tags}">
+						<div th:text = "${tag.name} +  ' '  + ${tag.color}+  ' '  + ${tag.description}"></div>
+					</li>
+				</ul>
+	<form method="GET" th:action="@{/home}">
+		<button type="submit" name="submit" value="value">Home</button>
+	</form>
+</body>
+</html>

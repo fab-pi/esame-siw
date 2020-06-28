@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org">
+<head>
+	<link rel="stylesheet" href="style.css" type="text/css">
+    <title>TaskManager</title>
+</head>
+
+<body style="background-color: powderblue">
+<form id="updateProjectForm" th:object="${ProjectForm}" method="POST"></form>
+	<h1>Update Project</h1>
+	<form id="updateTaskForm" 
+	      th:action="'/projects/task/complete/' + ${projectId} +'/'+ ${taskId}"
+	      th:object="${updateTaskForm}"
+	      method="POST">
+	      
+	<table>
+		<tr>
+			<td><label for="taskNameInput">Task name</label></td>
+			<td><input id="taskNameInput" type="text" placeholder="NAME" required th:field="${updateTaskForm.name}"/></td>
+			
+		</tr>
+		<tr>
+			<td><label for="taskDescriptionInput">Task description</label></td>
+			<td><input id="taskDescriptionInput" type="text" placeholder="DESCRIPTION" required th:field="${updateTaskForm.description}"/></td>
+			
+		</tr>
+		<tr>
+			<td><button type="submit" >Complete</button></td>
+		</tr>
+	</table>
+	</form>
+	<form th:action="'/projects/member/' + ${loggedUser.firstName} + '/' + ${projectId} " method="GET">
+  			<button type="submit">Discard canges</button>  
+  	</form>
+  	<form method="GET" th:action="@{/home}">
+		<button type="submit" name="submit" value="value">Home</button>
+	</form>
+</body>
+</html>

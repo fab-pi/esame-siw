@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org">
+<head>
+	<link rel="stylesheet" href="style.css" type="text/css">
+    <title>TaskManager</title>
+</head>
+
+<body style="background-color: powderblue">
+	<table>
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Description</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each ="project : ${projects}">
+				<td><a th:href="'/projects/' + ${project.id}" th:text = "${project.name}"></a></td>
+				<td th:text = "${project.description}"></td>
+			</tr>
+		</tbody>
+		
+	</table>
+	<form method="GET" th:action="@{/home}">
+		<button type="submit" name="submit" value="value">Home</button>
+	</form>
+</body>
+</html>

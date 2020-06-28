@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org">
+<head>
+	<link rel="stylesheet" href="style.css" type="text/css">
+    <meta charset="UTF-8">
+    <title>TaskManager</title>
+</head>
+<body style="background-color: powderblue">
+	<h1>All Users</h1>
+		<div>
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>UserName</th>
+						<th>First Name</th>
+						<th>Last Name</th>
+						<th>Share</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each = "credentials : ${credentialsList}">
+						<td th:text = "${credentials.userName}"></td>
+						<td th:text = "${credentials.user.firstName}"></td>
+						<td th:text = "${credentials.user.lastName}"></td>
+						<td>
+							<form method="POST" th:action="'/projects/share/' + ${projectId} +'/' + ${credentials.user.firstName}">
+								<button type="submit" name="submit" value="value">share</button>
+							</form>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+
+</body>
+</html>

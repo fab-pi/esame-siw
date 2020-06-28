@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org">
+<head>
+	<link rel="stylesheet" href="style.css" type="text/css">
+    <meta charset="UTF-8">
+    <title>TaskManager</title>
+</head>
+<body style="background-color: powderblue">
+<h1 th:text="'Welcome, Master ' + ${user.firstName} + '!'"></h1>
+<h4><a href="/admin/users">All Users List</a></h4>
+
+<form method="GET" th:action="@{/home}">
+		<button type="submit" name="submit" value="value">Home</button>
+	</form>
+</body>
+</html>

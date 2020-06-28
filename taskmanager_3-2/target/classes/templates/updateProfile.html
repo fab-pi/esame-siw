@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org">
+<head>
+	<link rel="stylesheet" href="style.css" type="text/css">
+    <title>TaskManager</title>
+</head>
+
+<body style="background-color: powderblue">
+<h1>Update Profile</h1>
+<form id="updateProjectForm" th:object="${ProjectForm}" method="POST"></form>
+	<form id="updateProfileForm" 
+	      th:action="@{/users/me/update/}"
+	      th:object="${updateProfileForm}"
+	      method="POST">
+	      
+	<table>
+		<tr>
+			<td><label>Firstname</label></td>
+			<td><input type="text" required th:field="${credentials.user.firstName}"/></td>
+		</tr>
+		<tr>
+			<td><label>Lastname</label></td>
+			<td><input type="text" required th:field="${credentials.user.lastName}"/></td>
+		</tr>
+		<tr>
+			<td><button type="submit" >update</button></td>
+		</tr>
+	</table>
+	</form>
+	<form method="GET" th:action="@{/home}">
+		<button type="submit" name="submit" value="value">Home</button>
+	</form>
+    
+</body>
+</html>

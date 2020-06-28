@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org">
+<head>
+	<link rel="stylesheet" href="style.css" type="text/css">
+    <title>TaskManager</title>
+</head>
+
+<body style="background-color: powderblue">
+
+	<h3>Tags</h3>
+		<div th:if="${tags.size() >0}">
+				<ul>
+					<li th:each = "tag: ${tags}">
+						<div th:text = "${tag.name} +  ' '  + ${tag.color}+  ' '  + ${tag.description}"></div>
+					</li>
+				</ul>
+		</div>
+	<h3>Comments</h3>
+		<div th:if="${comments.size() >0}">
+				<ul>
+					<li th:each = "comment: ${comments}">
+						<div th:text = "${comment.description} +  ' '"></div>
+					</li>
+				</ul>
+		</div>
+	<form method="GET" th:action="@{/home}">
+		<button type="submit" name="submit" value="value">Home</button>
+	</form>
+	
+</body>
+</html>
